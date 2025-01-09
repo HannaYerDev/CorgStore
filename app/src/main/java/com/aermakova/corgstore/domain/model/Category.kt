@@ -1,0 +1,7 @@
+package com.aermakova.corgstore.domain.model
+
+data class Category(
+    val id: Int,
+    val name: String,
+    val image: String?
+)
