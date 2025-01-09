@@ -17,4 +17,6 @@ object AppStrings {
     const val filterBed: String = "Bed"
     const val filterLamp: String = "Lamp"
     const val filterStorage: String = "Storage"
+
+    const val addToCart: String  = "Add to cart"
 }

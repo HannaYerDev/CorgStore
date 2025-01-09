@@ -147,13 +147,7 @@ private fun ProductCard(
 private fun ProductCardPreview() {
     AppTheme {
         ProductCard(
-            product = ProductUIModel(
-                id = "EKENÄSET",
-                title = "EKENÄSET",
-                image = null,
-                contextualImageUrl = null,
-                price = 239.0,
-            )
+            product = ProductUIModel.test
         )
     }
 }
@@ -166,13 +160,7 @@ private fun ProductsScreenPreview() {
             screenState = ProductsScreenState(),
             state = ProductsState.Loaded(
                 products = listOf(
-                    ProductUIModel(
-                        id = "EKENÄSET",
-                        title = "EKENÄSET",
-                        image = null,
-                        contextualImageUrl = null,
-                        price = 239.0,
-                    )
+                    ProductUIModel.test
                 )
             )
         ) {}

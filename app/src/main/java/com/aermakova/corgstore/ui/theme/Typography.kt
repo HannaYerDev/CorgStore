@@ -30,6 +30,14 @@ val gelasioRegular18 = TextStyle(
     lineHeight = 18.sp,
     fontWeight = FontWeight.Normal,
 )
+
+val gelasioRegular24 = TextStyle(
+    fontFamily = Gelasio,
+    fontSize = 24.sp,
+    lineHeight = 24.sp,
+    fontWeight = FontWeight.Normal,
+)
+
 val gelasioSemiBold18 = TextStyle(
     fontFamily = Gelasio,
     fontSize = 18.sp,
@@ -51,6 +59,13 @@ val gelasioBold30 = TextStyle(
     fontWeight = FontWeight.Bold,
 )
 
+val nunitoSansLight14 = TextStyle(
+    fontFamily = NunitoSans,
+    fontSize = 14.sp,
+    lineHeight = 18.sp,
+    fontWeight = FontWeight.Light,
+)
+
 val nunitoSansRegular18 = TextStyle(
     fontFamily = NunitoSans,
     fontSize = 18.sp,
@@ -65,9 +80,23 @@ val nunitoSansRegular14 = TextStyle(
     fontWeight = FontWeight.Normal,
 )
 
+val nunitoSansSemiBold18 = TextStyle(
+    fontFamily = NunitoSans,
+    fontSize = 18.sp,
+    lineHeight = 18.sp,
+    fontWeight = FontWeight.SemiBold,
+)
+
 val nunitoSansBold14 = TextStyle(
     fontFamily = NunitoSans,
     fontSize = 14.sp,
     lineHeight = 14.sp,
+    fontWeight = FontWeight.Bold,
+)
+
+val nunitoSansBold30 = TextStyle(
+    fontFamily = NunitoSans,
+    fontSize = 30.sp,
+    lineHeight = 30.sp,
     fontWeight = FontWeight.Bold,
 )

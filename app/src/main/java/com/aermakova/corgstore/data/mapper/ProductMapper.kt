@@ -7,14 +7,8 @@ fun ProductOutput.toProduct(): Product = Product(
     id = id,
     title = name,
     category = typeName,
-//    description = description,
+    description = measurement,
     image = image,
     contextualImageUrl = contextualImageUrl,
     price = price.currentPrice
 )
-
-//fun CategoryOutput.toCategory() = Category(
-//    id = id,
-//    name = name,
-//    image = image
-//)

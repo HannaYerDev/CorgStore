@@ -8,7 +8,7 @@ object ProductMapper {
         return ProductUIModel(
             id = product.id,
             title = product.title,
-//            description = product.description,
+            description = product.description,
             image = product.image,
             contextualImageUrl = product.contextualImageUrl,
             price = product.price
