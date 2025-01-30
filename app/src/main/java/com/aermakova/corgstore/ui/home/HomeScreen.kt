@@ -1,6 +1,5 @@
 package com.aermakova.corgstore.ui.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,15 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.rememberAsyncImagePainter
 import com.aermakova.corgstore.R
 import com.aermakova.corgstore.ui.components.AppTopBar
+import com.aermakova.corgstore.ui.components.ShimmerImage
 import com.aermakova.corgstore.ui.components.filter.FilterComponent
 import com.aermakova.corgstore.ui.home.model.ProductUIModel
 import com.aermakova.corgstore.ui.navigation.Screens
@@ -66,6 +62,8 @@ private fun HomeScreenContent(
             onAction(ProductsActions.SelectFilter(it))
         }
 
+        Spacer(Modifier.height(AppTheme.dimens.spacing8))
+
         when (state) {
             ProductsState.Empty -> {}
             ProductsState.Error -> {
@@ -92,7 +90,7 @@ private fun ProductsContent(
             .background(
                 brush = AppTheme.colors.backgroundColor
             )
-            .padding(AppTheme.dimens.spacing8),
+            .padding(horizontal = AppTheme.dimens.spacing8),
         columns = GridCells.Fixed(2),
     ) {
         items(products, { item -> "item:${item}" }) { product ->
@@ -105,7 +103,6 @@ private fun ProductsContent(
 private fun ProductCard(
     product: ProductUIModel
 ) {
-    val isInPreviewMode = LocalInspectionMode.current
     Column(
         modifier = Modifier.padding(AppTheme.dimens.spacing8)
     ) {
@@ -114,14 +111,11 @@ private fun ProductCard(
                 .clip(RoundedCornerShape(AppTheme.dimens.spacing10))
                 .aspectRatio(6 / 7f),
         ) {
-            Image(
+            ShimmerImage(
                 modifier = Modifier.fillMaxSize(),
-                painter = rememberAsyncImagePainter(
-                    model = product.contextualImageUrl ?: product.image,
-                    error = painterResource(R.drawable.product_mock)
-                ).takeIf { !isInPreviewMode } ?: painterResource(R.drawable.product_mock),
                 contentDescription = "product image photo",
-                contentScale = ContentScale.FillBounds
+                imageUrl = product.contextualImageUrl ?: product.image,
+                errorImage = R.drawable.product_mock
             )
         }
 
