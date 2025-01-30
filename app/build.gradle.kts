@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -12,6 +15,14 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
+val localProperties: Properties = Properties().apply {
+    try {
+        load(FileInputStream(File("local.properties")))
+    } catch (ignored: Throwable) {  }
+}
+
+val apiKey = localProperties.getProperty("API_KEY") ?: ""
+
 android {
     namespace = "com.aermakova.corgstore"
     compileSdk = 34
@@ -25,20 +36,21 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField(
-            "String",
-            "API_KEY",
-            "\"${project.findProperty("API_KEY")}\""
-        )
-
         buildFeatures {
             buildConfig = true
         }
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        }
+
         release {
             isMinifyEnabled = false
+
+            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -93,7 +105,9 @@ dependencies {
     implementation(libs.paging.runtime.ktx)
     implementation(libs.paging.compose)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+//    testImplementation(libs.junit)
+//    androidTestImplementation(libs.androidx.junit)
+    testImplementation(platform(libs.junit5.bom))
+    testImplementation(libs.junit5.jupiter)
     androidTestImplementation(libs.androidx.espresso.core)
 }
