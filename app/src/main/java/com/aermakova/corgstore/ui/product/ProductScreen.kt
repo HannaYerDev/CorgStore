@@ -29,6 +29,8 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.aermakova.corgstore.R
 import com.aermakova.corgstore.ui.components.Counter
@@ -41,7 +43,11 @@ import com.aermakova.corgstore.ui.theme.nunitoSansLight14
 import com.aermakova.corgstore.ui.theme.nunitoSansSemiBold18
 
 @Composable
-fun ProductScreen() {
+fun ProductScreen(
+    navController: NavController,
+    viewModel: ProductViewModel = hiltViewModel()
+) {
+    ProductScreenContent(ProductUIModel.test)
 
 }
 

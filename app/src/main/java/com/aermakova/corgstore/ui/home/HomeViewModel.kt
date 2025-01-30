@@ -32,7 +32,12 @@ class HomeViewModel @Inject constructor(
     fun onAction(action: ProductsActions) {
         when (action) {
             is ProductsActions.SelectFilter -> selectFilter(action.filter)
+            is ProductsActions.SelectProduct -> navigateToProductScreen(action.productId)
         }
+    }
+
+    private fun navigateToProductScreen(productId: String) {
+        // Track the event
     }
 
     private fun loadProducts() {

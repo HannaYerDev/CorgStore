@@ -1,12 +1,14 @@
 [versions]
 activityCompose = "1.9.3"
-agp = "8.7.1"
+agp = "8.7.3"
 # https://developer.android.com/build/releases/gradle-plugin
 gradle = "8.5.1"
 # https://github.com/JetBrains/kotlin/releases
 kotlin = "2.0.0"
 coreKtx = "1.13.1"
-junit = "4.13.2"
+# https://github.com/junit-team/junit5/releases
+junit5-bom = "5.11.0"
+
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
@@ -44,8 +46,8 @@ androidx-material3 = { module = "androidx.compose.material3:material3" }
 androidx-ui = { module = "androidx.compose.ui:ui" }
 gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+junit5-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit5-bom" }
+junit5-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -100,6 +102,5 @@ compose = [
     "compose-runtime",
     "compose-animation",
     "compose-material",
-#    "compose-activity"
 ]
 

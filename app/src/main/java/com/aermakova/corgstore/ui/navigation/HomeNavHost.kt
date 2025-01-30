@@ -22,11 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.aermakova.corgstore.R
 import com.aermakova.corgstore.ui.home.HomeScreen
+import com.aermakova.corgstore.ui.product.ProductScreen
 import com.aermakova.corgstore.ui.theme.AppTheme
 
 
@@ -116,6 +119,14 @@ fun BottomNavigationBar() {
             }
             composable(Screens.Profile.route) {
                 HomeScreen(navController)
+            }
+            composable(
+                route = ProductScreen.route,
+                arguments = listOf(navArgument(ProductScreen.argumentKey) {
+                    type = NavType.StringType
+                })
+            ) {
+                ProductScreen(navController)
             }
         }
     }

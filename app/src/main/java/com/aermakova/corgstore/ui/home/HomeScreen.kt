@@ -1,6 +1,7 @@
 package com.aermakova.corgstore.ui.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -26,6 +27,7 @@ import com.aermakova.corgstore.ui.components.AppTopBar
 import com.aermakova.corgstore.ui.components.ShimmerImage
 import com.aermakova.corgstore.ui.components.filter.FilterComponent
 import com.aermakova.corgstore.ui.home.model.ProductUIModel
+import com.aermakova.corgstore.ui.navigation.ProductScreen
 import com.aermakova.corgstore.ui.navigation.Screens
 import com.aermakova.corgstore.ui.theme.AppTheme
 import com.aermakova.corgstore.ui.theme.nunitoSansBold14
@@ -40,7 +42,11 @@ fun HomeScreen(
         HomeScreenContent(
             screenState = viewModel.screenState,
             state = viewModel.state,
-            onAction = viewModel::onAction
+            onAction = viewModel::onAction,
+            onProductSelected = {
+                navController.navigate(ProductScreen.routeFormat.format(it))
+                viewModel.onAction(ProductsActions.SelectProduct(it))
+            }
         )
     }
 }
@@ -49,7 +55,8 @@ fun HomeScreen(
 private fun HomeScreenContent(
     screenState: ProductsScreenState,
     state: ProductsState,
-    onAction: (ProductsActions) -> Unit
+    onAction: (ProductsActions) -> Unit,
+    onProductSelected: (String) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -69,7 +76,11 @@ private fun HomeScreenContent(
             ProductsState.Error -> {
             }
 
-            is ProductsState.Loaded -> ProductsContent(state.products)
+            is ProductsState.Loaded -> ProductsContent(
+                products = state.products,
+                onProductSelected = onProductSelected
+            )
+
             ProductsState.Loading -> {
 
             }
@@ -79,7 +90,8 @@ private fun HomeScreenContent(
 
 @Composable
 private fun ProductsContent(
-    products: List<ProductUIModel>
+    products: List<ProductUIModel>,
+    onProductSelected: (String) -> Unit
 ) {
     val scrollState = rememberLazyGridState()
 
@@ -94,17 +106,25 @@ private fun ProductsContent(
         columns = GridCells.Fixed(2),
     ) {
         items(products, { item -> "item:${item}" }) { product ->
-            ProductCard(product)
+            ProductCard(
+                product = product,
+                onProductSelected = onProductSelected
+            )
         }
     }
 }
 
 @Composable
 private fun ProductCard(
-    product: ProductUIModel
+    product: ProductUIModel,
+    onProductSelected: (String) -> Unit
 ) {
     Column(
-        modifier = Modifier.padding(AppTheme.dimens.spacing8)
+        modifier = Modifier
+            .padding(AppTheme.dimens.spacing8)
+            .clickable {
+                onProductSelected(product.id)
+            }
     ) {
         Card(
             modifier = Modifier
@@ -141,7 +161,8 @@ private fun ProductCard(
 private fun ProductCardPreview() {
     AppTheme {
         ProductCard(
-            product = ProductUIModel.test
+            product = ProductUIModel.test,
+            onProductSelected = {}
         )
     }
 }
@@ -156,7 +177,9 @@ private fun ProductsScreenPreview() {
                 products = listOf(
                     ProductUIModel.test
                 )
-            )
-        ) {}
+            ),
+            onAction = { },
+            onProductSelected = { }
+        )
     }
 }
