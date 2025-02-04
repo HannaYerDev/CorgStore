@@ -24,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.aermakova.corgstore.R
 import com.aermakova.corgstore.ui.components.AppTopBar
+import com.aermakova.corgstore.ui.components.ProgressIndicator
 import com.aermakova.corgstore.ui.components.ShimmerImage
 import com.aermakova.corgstore.ui.components.filter.FilterComponent
 import com.aermakova.corgstore.ui.home.model.ProductUIModel
@@ -81,9 +82,7 @@ private fun HomeScreenContent(
                 onProductSelected = onProductSelected
             )
 
-            ProductsState.Loading -> {
-
-            }
+            ProductsState.Loading -> ProgressIndicator()
         }
     }
 }
@@ -126,18 +125,14 @@ private fun ProductCard(
                 onProductSelected(product.id)
             }
     ) {
-        Card(
+        ShimmerImage(
             modifier = Modifier
                 .clip(RoundedCornerShape(AppTheme.dimens.spacing10))
                 .aspectRatio(6 / 7f),
-        ) {
-            ShimmerImage(
-                modifier = Modifier.fillMaxSize(),
-                contentDescription = "product image photo",
-                imageUrl = product.contextualImageUrl ?: product.image,
-                errorImage = R.drawable.product_mock
-            )
-        }
+            contentDescription = "product image photo",
+            imageUrl = product.contextualImageUrl ?: product.image,
+            errorImage = R.drawable.product_mock
+        )
 
         Spacer(modifier = Modifier.height(AppTheme.dimens.spacing10))
 
