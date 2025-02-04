@@ -20,9 +20,8 @@ interface ProductApi {
     companion object {
 //        const val CATEGORIES_PATH =  "categories"
         const val PRODUCTS_PATH = "keywordSearch"
-//        const val PRODUCTS_PATH = "keywordSearch?keyword=furniture"
         const val PRODUCT_PATH = "product?productID=90533485"
     }
 }
 
-const val DEFAULT_KEYWORD = "furniture"
+const val DEFAULT_KEYWORD = "all"

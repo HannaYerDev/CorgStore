@@ -1,5 +1,6 @@
 package com.aermakova.corgstore.data.repository
 
+import com.aermakova.corgstore.data.local.ProductDao
 import com.aermakova.corgstore.data.remote.ProductApi
 import com.aermakova.corgstore.data.mapper.toProduct
 import com.aermakova.corgstore.data.remote.DEFAULT_KEYWORD
@@ -10,10 +11,12 @@ import javax.inject.Inject
 
 
 class ProductsRepository @Inject constructor(
-    private val productApi: ProductApi
+    private val productApi: ProductApi,
+    private val productDao: ProductDao
 ) : ProductsRepo {
 
-    override suspend fun getProduct() = productApi.getProduct().first().toProduct()
+    override suspend fun getProductById(productIt: String) =
+        productDao.getProductById(productIt).toProduct()
 
     override suspend fun getProducts(filter: Filter?): List<Product> {
         return productApi.getProducts(filter?.keyword?: DEFAULT_KEYWORD).map { it.toProduct() }

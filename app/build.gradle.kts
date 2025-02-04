@@ -5,13 +5,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-//    alias(libs.hilt.gradle.plugin)
 
-//    id("com.android.library")
-//    id("kotlin-android")
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
-//    id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
@@ -78,7 +74,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-////    // Import the Compose BOM
+    // Import the Compose BOM
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.compose.material3)
@@ -105,8 +101,10 @@ dependencies {
     implementation(libs.paging.runtime.ktx)
     implementation(libs.paging.compose)
 
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.junit)
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+
     testImplementation(platform(libs.junit5.bom))
     testImplementation(libs.junit5.jupiter)
     androidTestImplementation(libs.androidx.espresso.core)

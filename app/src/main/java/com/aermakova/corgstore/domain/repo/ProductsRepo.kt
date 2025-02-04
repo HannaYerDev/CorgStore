@@ -5,7 +5,7 @@ import com.aermakova.corgstore.domain.model.Product
 
 interface ProductsRepo {
 
-    suspend fun getProduct(): Product
+    suspend fun getProductById(productIt: String): Product
 
     suspend fun getProducts(filter: Filter? = null): List<Product>
 }
