@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ProductsRepo {
 
-    suspend fun getProductById(productIt: String): Product
+    suspend fun getProductById(productIt: String): Product?
 
     suspend fun fetchProducts()
 

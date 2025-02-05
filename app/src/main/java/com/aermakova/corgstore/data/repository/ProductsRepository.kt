@@ -17,7 +17,7 @@ class ProductsRepository @Inject constructor(
 ) : ProductsRepo {
 
     override suspend fun getProductById(productIt: String) =
-        productDao.getProductById(productIt).toProduct()
+        productDao.getProductById(productIt)?.toProduct()
 
     override fun observeProducts(): Flow<List<Product>> {
         return productDao.observeProducts().map { it.map { it.toProduct() } }

@@ -34,6 +34,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.aermakova.corgstore.R
 import com.aermakova.corgstore.ui.components.Counter
+import com.aermakova.corgstore.ui.components.ProgressIndicator
 import com.aermakova.corgstore.ui.home.model.ProductUIModel
 import com.aermakova.corgstore.ui.theme.AppStrings
 import com.aermakova.corgstore.ui.theme.AppTheme
@@ -47,12 +48,25 @@ fun ProductScreen(
     navController: NavController,
     viewModel: ProductViewModel = hiltViewModel()
 ) {
-    ProductScreenContent(ProductUIModel.test)
-
+    ProductScreenContent(
+        state = viewModel.state
+    )
 }
 
 @Composable
 private fun ProductScreenContent(
+    state: ProductState
+) {
+    when (state) {
+        ProductState.Empty -> {}
+        ProductState.Error -> {}
+        is ProductState.Loaded -> ProductContent(product = state.product)
+        ProductState.Loading -> ProgressIndicator()
+    }
+}
+
+@Composable
+private fun ProductContent(
     product: ProductUIModel
 ) {
     val isInPreviewMode = LocalInspectionMode.current
@@ -168,9 +182,9 @@ private fun ProductScreenContent(
 
 @Composable
 @Preview(showBackground = true)
-private fun ProductScreenContentPreview() {
+private fun ProductContentPreview() {
     AppTheme {
-        ProductScreenContent(
+        ProductContent(
             product = ProductUIModel.test
         )
     }
