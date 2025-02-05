@@ -12,5 +12,6 @@ data class ProductEntity(
     val measurement: String,
     val typeName: String,
     val image: String,
-    val contextualImageUrl: String? = null
+    val contextualImageUrl: String? = null,
+    val tags: String
 )

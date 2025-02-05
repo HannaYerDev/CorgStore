@@ -8,4 +8,5 @@ data class Product(
     val image: String,
     val contextualImageUrl: String?,
     val price: String?,
+    val tags : String
 )

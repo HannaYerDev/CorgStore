@@ -11,7 +11,19 @@ fun ProductOutput.toProduct(): Product = Product(
     description = measurement,
     image = image,
     contextualImageUrl = contextualImageUrl,
-    price = "${price.currentPrice}"
+    price = "${price.currentPrice}",
+    tags = categoryPath.fold("") { acc, category -> acc + ", ${category.name}" }
+)
+
+fun ProductOutput.toEntity(filter: String?): ProductEntity = ProductEntity(
+    id = id,
+    name = name,
+    typeName = typeName,
+    measurement = measurement,
+    image = image,
+    contextualImageUrl = contextualImageUrl,
+    price = "${price.currentPrice}",
+    tags = categoryPath.fold(filter?:"") { acc, category -> acc + ", ${category.name}" }
 )
 
 fun ProductEntity.toProduct(): Product = Product(
@@ -21,5 +33,6 @@ fun ProductEntity.toProduct(): Product = Product(
     description = measurement,
     image = image,
     contextualImageUrl = contextualImageUrl,
-    price = price
+    price = price,
+    tags = tags
 )
