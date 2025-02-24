@@ -31,6 +31,7 @@ import com.aermakova.corgstore.ui.navigation.preformOneDirectionNavigation
 import com.aermakova.corgstore.ui.theme.AppStrings
 import com.aermakova.corgstore.ui.theme.AppTheme
 import com.aermakova.corgstore.ui.theme.gelasioBold30
+import com.aermakova.corgstore.ui.theme.gelasioRegular18
 import com.aermakova.corgstore.ui.theme.gelasioSemiBold18
 import com.aermakova.corgstore.ui.theme.gelasioSemiBold24
 import com.aermakova.corgstore.ui.theme.nunitoSansRegular18
@@ -41,19 +42,32 @@ fun BoardingScreen(
 ) {
     val viewModel: BoardingViewModel = hiltViewModel()
     AppTheme {
-        BoardingScreenContent(navController)
+        BoardingScreenContent(
+            navController = navController,
+            onAction = viewModel::onAction
+        )
     }
 }
 
 @Composable
-private fun BoardingScreenContent(navController: NavHostController) {
+private fun BoardingScreenContent(
+    navController: NavHostController,
+    onAction: (BoardingAction) -> Unit
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         contentWindowInsets = WindowInsets.safeContent,
         content = { paddingValues ->
             BoardingContent(
                 modifier = Modifier.padding(paddingValues),
-                onGetStarted = {
+                onLogIn = {
+                    preformOneDirectionNavigation(
+                        navController = navController,
+                        route = Screens.LogIn.route
+                    )
+                },
+                onStartAsGuest = {
+                    onAction(BoardingAction.StartAsGuest)
                     preformOneDirectionNavigation(
                         navController = navController,
                         route = Screens.Home.route
@@ -67,7 +81,8 @@ private fun BoardingScreenContent(navController: NavHostController) {
 @Composable
 private fun BoardingContent(
     modifier: Modifier = Modifier,
-    onGetStarted: () -> Unit,
+    onLogIn: () -> Unit,
+    onStartAsGuest: () -> Unit
 ) {
     Box {
         Image(
@@ -112,15 +127,16 @@ private fun BoardingContent(
                 )
             }
 
-            Box(
+            Column(
                 modifier = Modifier
                     .weight(2f)
                     .align(alignment = Alignment.CenterHorizontally),
             ) {
                 Text(
                     modifier = Modifier
+                        .align(alignment = Alignment.CenterHorizontally)
                         .clickable {
-                            onGetStarted()
+                            onLogIn()
                         }
                         .background(
                             color = AppTheme.colors.black,
@@ -135,6 +151,19 @@ private fun BoardingContent(
                         color = AppTheme.colors.white
                     ),
                 )
+
+                Text(
+                    modifier = Modifier
+                        .clickable {
+                            onStartAsGuest()
+                        }
+                        .padding(
+                            vertical = AppTheme.dimens.spacing12,
+                            horizontal = AppTheme.dimens.spacing24
+                        ),
+                    text = AppStrings.startAsGuest,
+                    style = gelasioRegular18
+                )
             }
         }
     }
@@ -144,6 +173,9 @@ private fun BoardingContent(
 @Composable
 private fun BoardingContentPreview() {
     AppTheme {
-        BoardingContent {}
+        BoardingContent(
+            onLogIn = {},
+            onStartAsGuest = {}
+        )
     }
 }

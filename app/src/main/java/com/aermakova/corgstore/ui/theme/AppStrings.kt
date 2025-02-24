@@ -6,7 +6,8 @@ object AppStrings {
     const val boardingTitle2: String = "home beautiful"
     const val boardingDescription: String =
         "The best simple place where you discover the most wonderful furniture and make your home beautiful"
-    const val getStarted: String = "Get Started"
+    const val getStarted: String = "Log In"
+    const val startAsGuest: String = "Continue as a Guest"
 
     const val homeTitle1: String = "Make home"
     const val homeTitle2: String = "beautiful"

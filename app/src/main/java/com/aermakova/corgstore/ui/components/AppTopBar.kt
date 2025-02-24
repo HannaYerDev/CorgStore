@@ -46,6 +46,7 @@ fun AppTopBar(
             Screens.Cart -> HomeScreenTitle()
             Screens.Favourites -> HomeScreenTitle()
             Screens.Profile -> HomeScreenTitle()
+            Screens.LogIn -> HomeScreenTitle()
         }
 
         Image(

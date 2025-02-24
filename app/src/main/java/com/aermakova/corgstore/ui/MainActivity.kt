@@ -11,10 +11,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.aermakova.corgstore.R
 import com.aermakova.corgstore.ui.navigation.MainNavHost
@@ -47,7 +47,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-internal fun MainContent() {
+internal fun MainContent(
+    viewModel: MainViewModel = hiltViewModel()
+) {
     val navController = rememberNavController()
     AppTheme {
         Surface(
@@ -55,7 +57,8 @@ internal fun MainContent() {
             color = AppTheme.colors.white
         ) {
             MainNavHost(
-                navHostController = navController
+                navHostController = navController,
+                userMode = viewModel.userMode
             )
         }
     }
