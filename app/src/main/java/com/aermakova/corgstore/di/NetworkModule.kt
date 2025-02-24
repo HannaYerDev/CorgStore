@@ -4,7 +4,6 @@ import com.aermakova.corgstore.BuildConfig
 import com.aermakova.corgstore.common.util.Environment
 import com.aermakova.corgstore.common.util.retrofitJsonConverter
 import com.aermakova.corgstore.data.remote.ProductApi
-import com.aermakova.corgstore.util.LocalProperties
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
