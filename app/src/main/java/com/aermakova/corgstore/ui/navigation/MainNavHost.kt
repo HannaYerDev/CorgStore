@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.aermakova.corgstore.domain.model.UserMode
 import com.aermakova.corgstore.ui.boarding.BoardingScreen
+import com.aermakova.corgstore.ui.login.LogInScreen
 
 @Composable
 fun MainNavHost(
@@ -26,6 +27,9 @@ fun MainNavHost(
         }
         composable(Screens.Home.route) {
             BottomNavigationBar()
+        }
+        composable(Screens.LogIn.route) {
+            LogInScreen(navHostController)
         }
     }
 }

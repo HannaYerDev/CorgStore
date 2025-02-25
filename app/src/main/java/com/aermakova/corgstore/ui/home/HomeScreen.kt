@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -99,7 +98,7 @@ private fun ProductsContent(
         modifier = Modifier
             .fillMaxHeight()
             .background(
-                brush = AppTheme.colors.backgroundColor
+                brush = AppTheme.colors.backgroundBrash
             )
             .padding(horizontal = AppTheme.dimens.spacing8),
         columns = GridCells.Fixed(2),

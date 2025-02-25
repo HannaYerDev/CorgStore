@@ -22,4 +22,5 @@ internal data class AppDimens(
     val counterCornerRadius: Dp = 6.dp,
     val counterSize: Dp = 30.dp,
     val buttonHeight: Dp = 60.dp,
+    val dividerHeight: Dp = 1.dp
 )

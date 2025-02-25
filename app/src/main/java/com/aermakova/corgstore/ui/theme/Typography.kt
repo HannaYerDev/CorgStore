@@ -37,6 +37,12 @@ val gelasioRegular24 = TextStyle(
     lineHeight = 24.sp,
     fontWeight = FontWeight.Normal,
 )
+val gelasioSemiBold16 = TextStyle(
+    fontFamily = Gelasio,
+    fontSize = 16.sp,
+    lineHeight = 16.sp,
+    fontWeight = FontWeight.SemiBold,
+)
 
 val gelasioSemiBold18 = TextStyle(
     fontFamily = Gelasio,
@@ -49,6 +55,13 @@ val gelasioSemiBold24 = TextStyle(
     fontFamily = Gelasio,
     fontSize = 24.sp,
     lineHeight = 24.sp,
+    fontWeight = FontWeight.SemiBold,
+)
+
+val gelasioSemiBold30 = TextStyle(
+    fontFamily = Gelasio,
+    fontSize = 30.sp,
+    lineHeight = 30.sp,
     fontWeight = FontWeight.SemiBold,
 )
 

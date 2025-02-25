@@ -11,10 +11,14 @@ internal data class AppColors(
     val white: Color = Color(0xFFFFFFFF),
     val filterColor: Color = Color(0xFFF5F5F5),
     val counterColor: Color = Color(0XFFE0E0E0),
-    val backgroundColor: Brush = Brush.verticalGradient(
+    val backgroundBrash: Brush = Brush.verticalGradient(
         colors = listOf(
             Color(0xFFFFFFFF),
             Color(0xFFDCDCDC)
         )
-    )
+    ),
+    val backgroundColor: Color = Color(0XFFCACCCE),
+    val headerColor: Color = Color(0xFFBDBDBD)
+
+    //CACCCE
 )
